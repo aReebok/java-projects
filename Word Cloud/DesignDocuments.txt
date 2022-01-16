@@ -1,0 +1,87 @@
+>>>> incrementCount pseudo code: 
+
+incrementCount(String word) {
+  first strip word of all numerals/non alphabetical words. 
+  calls helper function: incrementCount(word,root); 
+  // passes in the root of the word map
+}
+
+So helper function will have recursion in it:
+// helper function would look something like 
+private void incrementCount(String word, TreeNode curNode){
+  // some base case: if only 1 letter is being added
+  if (word.length == 1) {
+    // is it already in the map of curNode??
+    if (word is not a child of curNode) {
+      // create a temporary TreeNode that holds word
+      temptreenode.word = word; 
+      temptreenode.count = 1;
+      // add temptreenode to root's childrens Map
+      root.map.put(word, temptreenode);
+    } else { 
+    // its already a child of root, increment
+    // count of that node 
+      root.children.get(word).count++;
+    }
+  } else { // not word length is > 1 : recursion below
+    if (first letter of word is not in root.children)) {
+      TreeNode temptreenode = new TreeNode(word[0])  
+      curnode.children.put(word[0], tempword);
+      // --> cut the word (take off the first letter)
+      incrementCount (tempnode.substring(1), tempnode);
+    } else {
+      word = word.substring(1); // --> cut the word (take off the first letter)
+       incrementCount( word, curnode.children.get(word[0]));
+    }
+  }
+}
+
+// -------------------------------------------------------------
+>>>> decrementCount pseudo code:
+
+details: given a string of word to remove from the map
+remove 1 to the existing count -- do nothing if word is
+not in map. 
+IF word only 1 instance of the word is present, then remove 
+any nodes in the tree that are no longer necessary to represent
+the removed word.
+
+inorder to do the removing, we should recursively check if the curnode 
+has an children: if it does, then dont remove it and end the recursion
+if it doesn't have children then remove this node??
+
+public void decrementCount(String word) {
+  first strip word of all numerals/non alphabetical words. 
+  boolean out = decrementCount(word, root);
+  if (out == false) //then word needs to be deleted from tree. 
+    deleteWord(word, root);
+}
+
+//helperfunc:
+private boolean decrementCount(String word, TreeNode curnode){
+    if (word.length() == 0) return true; // incase word was only numbers or punctuations
+    if (word.length() == 1) { // reached the end of the iteration
+      if (word not in curNode.MAP) { 
+        // no changes 
+        return true;
+      } else { // it is in map... then decrement. 
+        if (curNode.map.get(word).count-1 > 1) {
+          then count--;
+          return true;
+        } else { return false; /** this means that it should be deleted..**/ }
+      }
+    } else {
+      if (word[0] not in curNode.chidlren) return true;
+      // recursive call here 
+      if (decrementCount(word.substring(1), curnode.children.getNode(word[0])) == false){
+        // then delete THIS node from curnode.children..
+        curnode.children.remove(word[0]);
+      }
+    } 
+
+    // conditions to remove -- if false then remove node, else keep node
+    if(curNode.count == 0 && curNode.childrenNodes.isEmpty()){ 
+      return false; 
+    }
+    return true;
+}

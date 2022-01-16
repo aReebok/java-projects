@@ -1,0 +1,30 @@
+1. write step-by-step English for your load method 
+that shows the overall structure and where you'll be 
+checking for these edge cases
+  edge case: The load method should return false if 
+  there are any squares that don't have
+  *, 7, _, or | as a descriptor, or the number of 
+  squares and their organization is 
+  inconsistent with the number of rows and columns 
+  specified at the beginning of the file
+  
+  more detailed step-by-step checking:
+  1. make sure the given file exists in the
+   curernt directory
+  2. make sure that the first 3 input lines from file
+  have only 2 integers per line.
+  3. make sure that only integers are passed in for
+  the first three lines of the file: send a error
+  message if not and close program.
+  4. make sure that length of input ln4 and on is 
+  equal to number of columns and are only the using
+  the following descriptiors: *, 7, _, |.
+  5. also make sure that the number of lines in file
+  after line 3 should be equal to the number of rows
+  in the maze: if too little lines, return false, end
+  program (send err line), if bigger than the number
+  of row, then ignore the lines that are past the 
+  number of rows: and print out a warning (just 
+  ignores the lines that are extra and still prints
+  the maze and maze solution correctly). 
+  

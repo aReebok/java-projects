@@ -1,0 +1,11 @@
+>> location of parent node at some index i: 
+  parent(node i) = (i-1)/5
+>> children of node i 
+  children(node i) = 5*i+1[or 2,3,4,5] as long as
+  the numItems is long enough.
+
+  array
+  0, children: 1 2 3 4 5 
+  1, children: 6 7 8 9 10
+  2, children: 11 12 13 14 15
+  3, children: 16 17 and so on...

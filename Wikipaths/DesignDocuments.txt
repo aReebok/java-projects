@@ -1,0 +1,27 @@
+1. What instance variables will PathFinder class be using - 
+  a. a directed UnweightedGraph object which will use integers to 
+     keep track of paths between nodes.
+  b. a List<String> path to store in the class object -- this will
+     allow me to get the lenght of the path in O(1) runtime because
+     the list wont need to be recreated or somehting. 
+  c. a HashMap <String, int> that takes String key and returns the
+     integer ID: which is what we can use in the dirGraph to assign
+     paths and go through the graph to find shortest path.
+  d. another HashMap<Integer,String> because the first HashMap with
+     key string will have to be iterated thorugh to get the key for
+     a given value >> this will take up more space, but we can refer
+     to node's ID and get the node String name in O(1).
+
+  If I have time, I want to see if I can do something else rather than
+  having 2 maps that are essentially the same. Maybe something like:
+  Map <integer,HashMap<String,integer>> articles??
+  >> note: i tried to do this but some confusing things happened...
+  so i just kept it as described above. 
+
+  How I will search my graph: because we're looking for the shortest
+  path from one node to another, it makes sense to do a breadth first
+  traversal while searching because we're simultaniously checking all 
+  neighbors of one node and going through the graph while branching 
+  out to find the path: so by default we don't have to worry about
+  writing algorithm that will make sure we're getting the shortest path.
+  

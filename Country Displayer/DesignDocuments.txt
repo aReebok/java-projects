@@ -1,0 +1,74 @@
+Design Documents
+
+1. what instance variables are needed and why?
+  a. instance variable Node head is needed in SortedLinkList: 
+  this will be the begining of the linked list -- so that we
+  don't lose the memory of the begining of the linked list. 
+  b. for debugging purposes, I might use private int listLenght
+  to keep track of the lenght of the linkedlist (O(1) operation).
+  Also this variable will be needed when  public method size
+  is used. 
+  c. in the constructor of class SortedLinkList, the comparator
+  needs to be stored in a varibles: so I will create private 
+  CountryComparator that will help keep the sorting information. 
+  d. in SortedLinkList private class Node is needed to which 
+  will hold the following instance variables for a Node:
+    i. private Country item: this stores the country object.
+    ii. private Node next: this stores the memory location of
+    the next item in the linked list: allowing us to easily
+    have access to it.
+    iii. private Node prev: this stores the memory location 
+    of the previous Country object in the linked list: this
+    is important to reduce big-O from O(n^3) to O(n^2) b/c
+    finding previous Node runtime is now O(1) rather than
+    O(n) with a looping search Node method if there is no 
+    way to access the contents of prev node.
+
+2. add method implementation: 
+  first I want to create a new node that is going to be added at
+  "index 0" of the list right after the head. This will contain
+  the Country item that is being added to the list. It's prev node
+  will point to the head, and it's next node will point to the next
+  node that is pointed at by the head (head.next). Then head.next
+  will point to this new node! Additionally, I will create node
+  called the current node that is set to this new node head.next.
+  Right after that, the program enters a while loop: 
+  a while loop that is responsible to finding where to put in the
+  given Country element by using the comparator to keep looping 
+  until the country object is in the right place. So this loop 
+  should end either when current is at the end of the linked list
+  or if the comparator.comapre value returns 0 or a negative value,
+  indication that the element should be on the left of the next
+  element. After comparing with every element starting from elm1,
+  the loop also changes each node as it "slides" down the Country
+  till it reaches the right spot. 
+  
+3. resort method implementation: 
+  given that: "resort should either move nodes around or move items 
+  between nodes - it shouldn't make new nodes," the already SortedLinkList
+  can be used, so there is no need for creating new Objects. 
+  Insertion sorting in linkedlist: 
+
+  psudeo code:
+  resort(new comparator to sort by):
+    comparator = new comparator to sort by 
+    for each element i in linked list:
+      currNode = list.get(element i)
+
+      while (previous element!=null and until current item should be on the left of previous item):
+        swap current node with previous node
+        (
+        this is done by changing the pointers like so:
+        (i made a drawing of this to work through the logic)
+
+        current.prev.next = current.next
+        current.next = current.prev
+        current.prev = current.next.prev
+        current.next.prev = current
+        and if current.next.next exists: 
+            current.next.next.prev = current.next
+        and finally:
+        current.prev.next = current;
+
+        and then, change current to the next element to be sorted.
+  ** Over all, this should be in O(n^2) in terms of big-O notations..
